@@ -1,5 +1,8 @@
 // 定义 vector<int> nums(个数, 初始化的值)  /  {1,2,3}
-// 常用函数 .empty .size .back .push_back .pop_bact   arr.insert(arr.begin()+2, 666) 
+// 常用函数 .empty .size .back .push_back .pop_bact   
+// arr.insert(arr.begin()+2, 666);   增
+// arr.erase(arr.begin()+2);   删
+// arr[i]  索引  查 改
 
 
 
