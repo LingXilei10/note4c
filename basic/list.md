@@ -64,12 +64,28 @@ Node(Node* prev, E element, Node* next) {
 
 
 ## 函数
-
+```cpp
 std::list<int> lst(n);
-// 访问
-lst.front(); lst.back();
-// 
-
+// 增
+lst.push_front();
+lst.push_back();
+auto it = lst.begin();
+advance(it,2);
+lst.insert(it,11);
+//删
+lst.pop_front();
+lst.pop_back();
+lst.erase(it+2);
+//查
+lst.front();
+lst.back();
+lst.empty();
+lst.size();
+//改
+for (int val : lst) {
+        cout << val << " ";
+    }
+```
 `lst.begin()` 和 `lst.front()` 是 C++ 中 `std::list` 容器（或其他 STL 容器）上的两个不同的成员函数，它们的功能有所区别：
 
 ### `lst.begin()`
