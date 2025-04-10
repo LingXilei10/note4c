@@ -33,6 +33,14 @@ vector<int> nextGreaterElement(vector<int>& nums) {
     }
     return ans;
 }
+//正着放也可以
+for (int i = 0;i < nums.size() - 1;i++) {
+    while (!s.empty() && nums[i] > nums[s.top()]) {
+        ans[s.top()] = nums[i];
+        s.pop();
+    }
+    s.push(i);
+}
 ```
 
 ![屏幕截图 2025-02-28 172854](E:\076lxl\work\note4c\pic\屏幕截图 2025-02-28 172854.png)
