@@ -81,19 +81,9 @@ int highest = pq.top();  // 获取最大值（3）
 - 需要特定数据结构行为（如栈/队列）时。
 - 避免手动实现底层逻辑，提升代码简洁性。
 
-如果需要进一步解释底层实现或性能考量，可以随时提问！
+## 无迭代器
 
-
-
-
-
-
-
-
-
-
-
-栈提供push 和 pop 等等接口，所有元素必须符合先进后出规则，所以栈不提供走访功能，也不提供迭代器(iterator)。 不像是set 或者map 提供迭代器iterator来遍历所有元素。
+栈提供push 和 pop 等等接口，**所有元素必须符合先进后出规则，所以栈不提供走访功能，也不提供迭代器(iterator)**。 不像是set 或者map 提供迭代器iterator来遍历所有元素。
 
 **栈是以底层容器完成其所有的工作，对外提供统一的接口，底层容器是可插拔的（也就是说我们可以控制使用哪种容器来实现栈的功能）。**
 
@@ -107,6 +97,7 @@ int highest = pq.top();  // 获取最大值（3）
 
 ### 1. **为什么选择`deque`作为默认底层容器？**
 `deque`具有以下特点，使其非常适合作为`stack`的底层实现：
+
 - **动态扩展**：`deque`的内存空间是分段连续的，可以动态扩展，不需要像`vector`那样在扩容时复制整个容器。
 - **高效操作**：`deque`在两端（头部和尾部）的插入和删除操作都是 **O(1)** 时间复杂度，适合栈的操作需求。
 - **灵活性**：`deque`既支持从头部操作，也支持从尾部操作，而栈只需要在一端操作即可。
@@ -160,36 +151,36 @@ int main() {
 
 
 
-## 【deque的简单说明】
+## deque
 
 我们可以发现在stack和queue实现的过程中，模板参数容器部分有一个缺省参数deque。
 
 <img src="E:\076lxl\work\note4c\basic\stl\assets\1d5c3451dfd8a794a6118a7e37f95c48.png" alt="img" style="zoom:33%;" />
 
-5.3.1【deque的介绍】
 
+deque(双端队列)：是一种**双开口的"连续"空间的数据结构**，双开口的含义是：可以在头尾两端进行插入和 删除操作，且时间复杂度为O(1)，**与vector比较，头插效率高，不需要搬移元素；与list比较，空间利用率比较高**。
 
-deque(双端队列)：是一种**双开口的"连续"空间的数据结构**，双开口的含义是：可以在头尾两端进行插入和 删除操作，且时间复杂度为O(1)，与vector比较，头插效率高，不需要搬移元素；与list比较，空间利用率比较高。
+<img src="E:\076lxl\work\note4c\basic\stl\assets\e5bb7a041c60deecf20a60a29d3798ea.png" alt="img" style="zoom:50%;" />
 
+**deque并不是真正连续的空间，而是由一段段连续的小空间拼接而成的**，实际deque类似于一个**动态的二维数组**，其底层结构如下图所示：
 
+<img src="E:\076lxl\work\note4c\basic\stl\assets\12572e8fa8e6a7fe507258b977b318bf.png" alt="img" style="zoom:50%;" />
 
-deque并不是真正连续的空间，而是由一段段连续的小空间拼接而成的，实际deque类似于一个动态的二维数组，其底层结构如下图所示：
-
-
+<img src="E:\076lxl\work\note4c\basic\stl\assets\e9a3fc33a294c2dac2d0184d957259e3.png" alt="img" style="zoom:33%;" />
 
 双端队列底层是一段假象的连续空间，实际是分段连续的，为了维护其“整体连续”以及随机访问的假象，落在了deque的迭代器身上，因此deque的迭代器设计就比较复杂。
 
 如下图所示：
 
-
+<img src="E:\076lxl\work\note4c\basic\stl\assets\26be0b76b87408ac1e855d24a47f5bad.png" alt="img" style="zoom:50%;" />
 
 那deque是如何借助其迭代器维护其假想连续的结构呢？
 
+![img](E:\076lxl\work\note4c\basic\stl\assets\648fdce712731ff39ca7a83deef1d945.png)
 
+![img](E:\076lxl\work\note4c\basic\stl\assets\2cf2fa40b7f8775cebe53ea70dc9cc2d.png)
 
-
-
-5.3.2 【deque的缺陷】
+### deque的缺陷
 
 与vector比较，deque的优势是：头部插入和删除时，不需要搬移元素，效率特别高，而且在扩容时，也不需要搬移大量的元素，因此其效率是必vector高的。
 与list比较，其底层是连续空间，空间利用率比较高，不需要存储额外字段。
