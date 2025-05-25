@@ -1,3 +1,5 @@
+[细说new与malloc的10点区别 - melonstreet - 博客园](https://www.cnblogs.com/QG-whz/p/5140930.html)
+
 1、 **new/delete是C++关键字**，需要编译器支持。**malloc/free是库函数**，需要头文件支持；
 
 2、 使用new操作符申请内存分配时无须指定内存块的大小，编译器会根据类型信息自行计算。而**malloc则需要显式地指出所需内存的尺寸**。

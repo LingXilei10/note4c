@@ -51,7 +51,7 @@ std::queue<int, std::list<int>> third; // 定义以list为底层容器的队列
    - 先进先出（FIFO）结构，默认基于`deque`实现。
    - 核心操作：`push()`、`pop()`、`front()`、`back()`。
 3. **`priority_queue`**
-   - 元素按优先级排序（默认最大堆），默认基于`vector`实现。
+   - 元素按优先级排序（默认最大堆 降序），默认基于`vector`实现。
    - 核心操作：`push()`、`pop()`、`top()`。
 
 ### 特点：
@@ -197,4 +197,16 @@ stack是一种后进先出的特殊线性数据结构，因此只要具有push_b
 总结：
 
 虽然stack和queue中也可以存放元素，但在STL中并没有将其划分在容器的行列，而是将其称为容器适配器，这是因为stack和队列只是对其他容器的接口进行了包装，STL中stack和queue默认使用deque：
+
+
+
+```cpp
+priority_queue <int,vector<int>,less<int> > p;  // 大顶堆
+priority_queue <int,vector<int>,greater<int> > q;  // 小顶堆
+
+auto cmp = [](ListNode* a, ListNode* b) { return a->val > b->val; };
+priority_queue<ListNode*, vector<ListNode*>, decltype(cmp)> pq(cmp); 
+```
+
+
 

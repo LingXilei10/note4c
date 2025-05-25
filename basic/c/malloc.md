@@ -1,3 +1,7 @@
+[细说new与malloc的10点区别 - melonstreet - 博客园](https://www.cnblogs.com/QG-whz/p/5140930.html)
+
+
+
 在C和C++中，`malloc` 函数用于动态分配内存。`malloc` 函数从堆（heap）中分配内存空间。堆是程序运行时可以动态分配和释放的内存区域，与程序的栈（stack）和数据段（data segment）不同，堆的大小在程序运行时可以改变。
 
 ### 堆（Heap）的特点：
