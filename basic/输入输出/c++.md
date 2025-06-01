@@ -61,6 +61,17 @@ int main() {
     std::cout << "You entered: " << line << std::endl;
     return 0;
 }
+
+
+
+while(geline(cin,s)){
+    if(s.empty()) break;
+    istringstream iss(s);
+    string ss;
+    while(iss>>ss){
+        if()
+    }
+}
 ```
 
 
@@ -71,6 +82,49 @@ int main() {
 while(getline(cin,s)){
     if(s.empty()) break;
     //处理...
+}
+```
+
+输入：
+
+```cpp
+2
+[[10,30],[30,200]]
+```
+
+读取：
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <sstream>
+#include <string>
+using namespace std;
+
+int main() {
+    int M;
+    cin >> M;
+    cin.ignore(); // 忽略换行符
+
+    string line;
+    getline(cin, line); // 读取整行，如 "[[10,30],[30,200]]"
+
+    vector<pair<int, int>> cost;
+    istringstream iss(line);
+    char discard; // 用于丢弃 '[', ',', ']' 等字符
+    int a, b;
+
+    while (iss >> discard) { // 读取 '['
+        if (discard == ']') break; // 结束
+        iss >> discard >> a >> discard >> b >> discard; // 读取格式如 [10,30]
+        cost.emplace_back(a, b);
+    }
+
+    // 输出检查
+    for (const auto& p : cost) {
+        cout << p.first << " " << p.second << endl;
+    }
+    return 0;
 }
 ```
 
