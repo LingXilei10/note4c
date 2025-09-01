@@ -1,0 +1,31 @@
+```
+class Solution {
+public:
+    int combinationSum4(vector<int>& nums, int target) {
+        vector<unsigned long long> dp(target+1,0);
+        dp[0]=1;
+        
+        for(int j=1;j<=target;j++){
+            for(auto num:nums){
+                if(j>=num)
+                    dp[j]+=dp[j-num];
+            }
+        }
+        return dp[target];
+    }
+};
+```
+
+外循环：遍历物品
+
+内循环：遍历容量大小
+
+=> 获得组合数 即{1,5} {5,1}是同一种方案
+
+
+
+外循环：遍历容量大小
+
+内循环：遍历物品
+
+=> 获得排列数 即{1,5} {5,1}是不同方案
